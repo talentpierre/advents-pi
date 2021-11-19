@@ -7,7 +7,7 @@ GPIO_PIN = 24
 
 # configure pin as input pin
 GPIO.setup(GPIO_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-# time between signal and reaction in seconds
+# waiting time for next iteration
 delayTime = 0.5
 print ("STRG+C to quit")
 
