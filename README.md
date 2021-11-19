@@ -1,9 +1,7 @@
 # advents-pi
 
-PI        -    KY032
-GND            GND
-3.3V           +
-GPIO24         OUT
-
-
-
+PI --> KY032</br>
+________________________
+GND    --> GND</br> 
+3.3V   --> +</br>
+GPIO24 --> OUT
