@@ -1,3 +1,3 @@
-# advents-piiii
+# advents-pi
 
 Erklärungen zum Projekt
