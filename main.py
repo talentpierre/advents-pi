@@ -3,23 +3,51 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
 # pin for sensor
-GPIO_PIN = 24
+MOVEMENT_PIN = 24
+RELAIS_PIN = 15
 
 # configure pin as input pin
-GPIO.setup(GPIO_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(MOVEMENT_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+# configure pin as input pin to be sure relais will not react
+GPIO.setup(RELAIS_PIN, GPIO.IN)
 # time between signal and reaction in seconds
-delayTime = 0.5
-print ("STRG+C to quit")
+DELAY_TIME = 0.5
+LIGHTS_ON_TIME = 15
+start_time = 0
 
+
+def on_time_is_over():
+    '''True if LIGHTS_ON_TIME is over'''
+    if start_time + LIGHTS_ON_TIME < time.time():
+        return True
+    return False
+
+
+def relais_on():
+    '''Turns the relais on'''
+    GPIO.setup(RELAIS_PIN, GPIO.OUT)
+
+
+def relais_off():
+    '''Turns the relais off'''
+    GPIO.setup(RELAIS_PIN, GPIO.IN)
+
+
+print ("STRG+C to quit")
 try:
     while True:
-        if GPIO.input(GPIO_PIN) == True:
-            print ("no movement")
-        else:
-            print ("movement")
+        #if the sensor recognizes something
+        if not GPIO.input(MOVEMENT_PIN):
+            print ("lights on")
             print ("---------------------------------------")
-        # Reset + Delay
-        time.sleep(delayTime)
+            relais_on()
+            start_time = time.time()
+        #if the sensor does not recognize something and the on time is over
+        elif on_time_is_over():
+            print("lights off")
+            relais_off()
+        #wait before starting the loop again
+        time.sleep(DELAY_TIME)
 except KeyboardInterrupt:
     # cleanup
     GPIO.cleanup() 
