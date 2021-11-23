@@ -17,38 +17,38 @@ start_time = 0
 
 
 def on_time_is_over():
-    '''True if LIGHTS_ON_TIME is over'''
+    '''True if LIGHTS_ON_TIME is over.'''
     if start_time + LIGHTS_ON_TIME < time.time():
         return True
     return False
 
 
 def relais_on():
-    '''Turns the relais on'''
+    '''Turns the relais on.'''
     GPIO.setup(RELAIS_PIN, GPIO.OUT)
 
 
 def relais_off():
-    '''Turns the relais off'''
+    '''Turns the relais off.'''
     GPIO.setup(RELAIS_PIN, GPIO.IN)
 
 
-print ("STRG+C to quit")
-try:
-    while True:
-        #if the sensor recognizes something
-        if not GPIO.input(MOVEMENT_PIN):
-            print ("lights on")
-            print ("---------------------------------------")
-            relais_on()
-            start_time = time.time()
-        #if the sensor does not recognize something and the on time is over
-        elif on_time_is_over():
-            print("lights off")
-            relais_off()
-        #wait before starting the loop again
-        time.sleep(DELAY_TIME)
-except KeyboardInterrupt:
-    # cleanup
-    GPIO.cleanup() 
-
+if __name__ == "main":
+    print ("STRG+C to quit")
+    try:
+        while True:
+            #if the sensor recognizes something
+            if not GPIO.input(MOVEMENT_PIN):
+                print ("lights on")
+                print ("---------------------------------------")
+                relais_on()
+                start_time = time.time()
+            #if the sensor does not recognize something and the on time is over
+            elif on_time_is_over():
+                print("lights off")
+                relais_off()
+            #wait before starting the loop again
+            time.sleep(DELAY_TIME)
+    except KeyboardInterrupt:
+        # cleanup
+        GPIO.cleanup() 
