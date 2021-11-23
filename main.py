@@ -33,7 +33,7 @@ def relais_off():
     GPIO.setup(RELAIS_PIN, GPIO.IN)
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     print ("STRG+C to quit")
     try:
         while True:
