@@ -33,7 +33,8 @@ def relais_off():
     GPIO.setup(RELAIS_PIN, GPIO.IN)
 
 
-if __name__ == "__main__":
+def main():
+    """The code will be executed."""
     print ("STRG+C to quit")
     try:
         while True:
@@ -51,4 +52,7 @@ if __name__ == "__main__":
             time.sleep(DELAY_TIME)
     except KeyboardInterrupt:
         # cleanup
-        GPIO.cleanup() 
+        GPIO.cleanup()
+
+if __name__ == "__main__":
+    main()
