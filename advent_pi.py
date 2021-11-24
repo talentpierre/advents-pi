@@ -8,6 +8,8 @@ GPIO.setmode(GPIO.BCM)
 MOVEMENT_PIN = 24
 RELAIS_PIN = 15
 
+# disable warnings
+GPIO.setwarnings(False)
 # configure pin as input pin
 GPIO.setup(MOVEMENT_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 # configure pin as input pin to be sure relais will not react

@@ -2,6 +2,7 @@
 import time
 import RPi.GPIO as GPIO
 
+import advent_pi
 from advent_pi import (
     DELAY_TIME,
     MOVEMENT_PIN,
