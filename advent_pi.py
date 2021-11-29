@@ -4,15 +4,13 @@ import RPi.GPIO as GPIO
 from configparser import ConfigParser
 
 # read config.ini file
-config_object = ConfigParser()
-config_object.read("config.ini")
-pins = config_object["PINS"]
-time_config = config_object["TIME"]
+conf = ConfigParser()
+conf.read("config.ini")
 
 GPIO.setmode(GPIO.BCM)
 # pin for sensor
-MOVEMENT_PIN = int(pins["movement_pin"])
-RELAIS_PIN = int(pins["relais_pin"])
+MOVEMENT_PIN = int(conf["PINS"]["MOVEMENT_PIN"]) 
+RELAIS_PIN = int(conf["PINS"]["RELAIS_PIN"]) 
 
 # disable warnings
 GPIO.setwarnings(False)
@@ -21,9 +19,9 @@ GPIO.setup(MOVEMENT_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 # configure pin as input pin to be sure relais will not react
 GPIO.setup(RELAIS_PIN, GPIO.IN)
 # time between signal and reaction in seconds
-DELAY_TIME = int(time_config["delay_time"])
-LIGHTS_ON_TIME = int(time_config["lights_on_time"])
-start_time = int(time_config["start_time"])
+DELAY_TIME = int(conf["TIME"]["DELAY_TIME"])
+LIGHTS_ON_TIME = int(conf["TIME"]["LIGHTS_ON_TIME"])
+start_time = int(conf["TIME"]["START_TIME"])
 
 def on_time_is_over():
     '''True if LIGHTS_ON_TIME is over.'''
