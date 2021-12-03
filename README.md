@@ -12,7 +12,7 @@ Der Sensor erkennt, wann eine Person an unserem Weihnachtsbaum vorbeigeht. Dann 
 
 ## Schritt 3 - Relais
 Das Relais wird über den 5V Pin und einem Ground Pin mit Strom versorgt. Der Input Pin am Relais dient zum Schalten.
-Der Pin 15 sendet ein Signal um den Relais zu schaltet.
+Der Pin 15 sendet ein Signal um das Relais zu schalten.
 Das Stromkabel vom Weihnachtsbaum wird an der Stelle wie im Bild gezeigt geteilt und mit dem Relais zusammengeführt.
 Befinden sich die Kabel in COM (Common) und NO (Normally open) ist der Stromkreis offen und die Lichterkette ist ausgeschaltet. Sendet der Pin 15 ein Signal würde der Stromkreis schließen und schaltet die Lichterkette an.
 Befinden sich die Kabel in COM und NC (Normally closed) ist der Stromkreis geschlossen und die Lichterkette leuchtet.
